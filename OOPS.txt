@@ -1,0 +1,114 @@
+Restricting a class to enfore create only limit objects;
+
+Actually restrict a class to allow only 5 objects to be created
+If you want to enforce that only 5 instances of Student can ever exist, you need to use a static counter.
+
+
+class Student {
+    static int count = 0; // shared by all instances
+    static final int MAX = 5;
+
+    int rollno;
+
+    Student() {
+        if (count >= MAX) {
+            throw new RuntimeException("Cannot create more than " + MAX + " Student objects.");
+        }
+        count++;
+        System.out.println("Student created. Total: " + count);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        Student s2 = new Student();
+        Student s3 = new Student();
+        Student s4 = new Student();
+        Student s5 = new Student();
+        Student s6 = new Student(); // ❌ Throws exception
+    }
+}
+
+Output :
+Student created. Total: 1
+Student created. Total: 2
+Student created. Total: 3
+Student created. Total: 4
+Student created. Total: 5
+Exception in thread "main" java.lang.RuntimeException: Cannot create more than 5 Student objects.
+
+✅ Singleton-Style Factory to Limit to 5 Objects
+
+class Student {
+    private int rollno;
+    private String name;
+
+    private static final int MAX = 5;
+    private static int count = 0;
+
+    // Hold created students
+    private static Student[] instances = new Student[MAX];
+
+    // Private constructor
+    private Student(int rollno, String name) {
+        this.rollno = rollno;
+        this.name = name;
+        System.out.println("Student created: " + name);
+    }
+
+    // Factory method to get instance
+    public static Student createStudent(int rollno, String name) {
+        if ( s == null ) {
+        }
+       
+        instances[count++] = s;
+        return s;
+    }
+
+    public void display() {
+        System.out.println("Roll No: " + rollno + ", Name: " + name);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = Student.createStudent(1, "Alice");
+        Student s2 = Student.createStudent(2, "Bob");
+        Student s3 = Student.createStudent(3, "Charlie");
+        Student s4 = Student.createStudent(4, "David");
+        Student s5 = Student.createStudent(5, "Eva");
+        Student s6 = Student.createStudent(6, "Frank"); // ❌ Will return null
+
+        // Display only non-null students
+        Student[] all = {s1, s2, s3, s4, s5, s6};
+        for (Student s : all) {
+            if (s != null) s.display();
+        }
+    }
+}
+
+Student created: Alice  
+Student created: Bob  
+Student created: Charlie  
+Student created: David  
+Student created: Eva  
+❌ Limit reached. Cannot create more than 5 students.  
+Roll No: 1, Name: Alice  
+Roll No: 2, Name: Bob  
+Roll No: 3, Name: Charlie  
+Roll No: 4, Name: David  
+Roll No: 5, Name: Eva  
+
+doubt : how static variable points in the same memory for every instance creating 
+
+        String invalidString = "abc";
+        int num2 = Integer.parseInt(invalidString);  -> this is a run time error, because abc is a string and in the runtime we are able to parseInt that during that time only invalidString is not holding
+number inside the "123" quotes like this, it is holding "abc" (abc) which is not a string.
+** Memory allocates during the runtime is knowns as dynamic memory allocation.
+
+class Student {
+     Student() {
+        // here the constructor has type class (Student which is my own datatype);
+    }
+
+}
