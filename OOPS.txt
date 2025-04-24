@@ -9,7 +9,7 @@ class Student {
     static final int MAX = 5;
 
     int rollno;
-
+ 
     Student() {
         if (count >= MAX) {
             throw new RuntimeException("Cannot create more than " + MAX + " Student objects.");
