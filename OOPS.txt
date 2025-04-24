@@ -112,3 +112,55 @@ class Student {
     }
 
 }
+---- April 24 ------
+
+
+class BankAccount {
+    private String accountHolderName;
+    private long accountNumber;
+    private long balance;
+
+    public BankAccount(String name, long accNumber, long initialBalance) {
+        this.accountHolderName = name;
+        this.accountNumber = accNumber;
+        this.balance = initialBalance;
+    }
+}
+
+public class AccountEnquiry {
+    public static void main(String[] args) {
+        
+        BankAccount account = new BankAccount(name, accNumber, initialBalance);
+     }
+} 
+In the constructor, this refers to the object currently being created , ( which is account ) here;
+
+--- passing object as argument to another  instance ----
+public class Example {
+
+	String name;
+	int age;
+	
+	Example (String name, int age){
+	    this.name = name;
+	    this.age = age;
+	}
+	
+	Example (Example other){
+	
+	    this.name = other.name;
+	    this.age = other.age;
+	}
+	
+	
+	
+	public static void main(String[] args) {
+	  
+	    Example mani = new Example("mani", 21);
+	    System.out.println(mani.name + " OG");
+	    
+	    Example ramesh = new Example(mani);
+	    System.out.println(ramesh.name);
+	    
+	}
+}
