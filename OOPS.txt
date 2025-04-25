@@ -1,6 +1,6 @@
 Restricting a class to enfore create only limit objects;
 
-Actually restrict a class to allow only 5 objects to be created
+Actually restrict a class to allow only 5 objects to be created 
 If you want to enforce that only 5 instances of Student can ever exist, you need to use a static counter.
 
 
